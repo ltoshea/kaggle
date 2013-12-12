@@ -44,7 +44,7 @@ def doWork(train, test, labels):
         start = time.time()
         prediction = majority(knn(test_sample, train, k=100), labels)
         print "Knn: %f" % (time.time() - start)
-        output_file.write(prediction)
+        output_file.write(str(prediction))
         output_file.write("\n")
         print (float(idx) / size) * 100
     output_file.close()
@@ -74,7 +74,7 @@ def doWorkNumpy(train, test, labels):
         knn = np.argsort(np.sum(np.power(np.subtract(train_mat, test_sample), 2), axis=1), axis=0)[:k]
         s = time.time()
         prediction = majority_vote(knn, labels)
-        output_file.write(prediction)
+        output_file.write(str(prediction))
         output_file.write("\n")
         print "Knn: %f, majority %f" % (time.time() - start, time.time() - s)
         print "Done: %f" % (float(idx) / size)

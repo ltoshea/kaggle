@@ -19,7 +19,13 @@ def read_data(f, header=True, test=False):
             row = row[1:]
 
         data.append(np.array(np.int64(row)))
-    return (data, labels)
+    
+    for i in range (0,10):
+        print("data:",data[i])
+        print ("labels",labels[i])
+    
+    sys.exit(1)
+    return(data,labels)
 
 
 if __name__ == "__main__":

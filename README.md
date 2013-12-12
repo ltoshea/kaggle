@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 kaggle-digit-recognizer
 =======================
 
@@ -28,3 +29,9 @@ libraries used
 * scipy
 * sklearn (scikit-learn)
 * matplotlib
+=======
+kaggle
+======
+
+Kaggle - Machine Learning
+>>>>>>> bb025f0fd8de4d42be1320120b61fd32953dbd52
