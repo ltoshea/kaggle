@@ -31,7 +31,7 @@ def medianfilter(train):
 		imageM = tempImgArray.reshape(28,28)
 		#print "ImageM type is: ",type(imageM)
 		#print "ImageM: ",imageM
-		med_denoised = ndimage.median_filter(imageM, 3)
+		med_denoised = ndimage.median_filter(imageM, size(2,2))
 		#print "denoised type before: ",type(med_denoised), len(med_denoised)
 		med_denoised_flat = med_denoised.reshape(1,784)
 	#	print "denoised type after: ",type(med_denoised_flat), len(med_denoised_flat)
@@ -41,16 +41,7 @@ def medianfilter(train):
 		#print "train[k]: ", train[k][:]
 		#fwrite(train,fname="output.median.csv")
 
-		return train
-
-
-		#train[k].shape
-		"""for i in range (0,28):
-			for j in range(0,28):
-				
-				imageM[i][j] = train[count]
-				count = (count+1) % 784"""
-	#imageM[i+1][j+1] = imageM.sort()[middle value]
+	return train
 
 
 if __name__ == '__main__':
