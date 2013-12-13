@@ -10,6 +10,7 @@ from preproc import pca,medianfilter
 from math import sqrt
 from sklearn.ensemble import RandomForestClassifier
 import time
+import sys,os
 print(__doc__)
 
 # Loading the Digits dataset
@@ -27,19 +28,35 @@ train1200 = pca(train,components=1200)
 
 
 #tuned_parameters = [{'kernel': ['rbf'], 'gamma': [1e-3, 1e-4], 'C': [1, 10, 100, 1000]}, {'kernel': ['linear'], 'C': [1, 10, 100, 1000]}]
-tuned_parameters = [{'n_estimators': [10,15,20], 'components': [800, 1000, 1200]}]
+tuned_parameters = [{'n_estimators': [10,15,20]}]
 max_features = sqrt(784)
 scores = ['precision', 'recall']
 #n_samples = len(X)/4
 # Split the dataset in two equal parts
 
+#//,train1200
+for i in range(0,3):
+    """print ("i is: ",i[0:1])
+    #time.sleep(10)
+    print ("i is: ",i[1:2])
+    #time.sleep(10)
+    print ("train800",train800[0:1])
+    #time.sleep(10)
+    print ("train800",train800[1:2])
+    print ("end of for")
+    continue"""
+    if (i==0):
+        train = train800
+        print ("\n Running with PCA:800 \n")
+    if (i==1):
+        train = train1000
+        print ("Running with PCA:1000 \n")
+    if (i==2):
+        train = train1200
+        print ("Running with PCA:1200 \n")
 
-for i in enumerate([train800,train1000,train1200]):
-    print ("i is: ",i[0:1])
 
     X_train, X_test, y_train, y_test = train_test_split( train, labels, test_size=0.5, random_state=0)
-
-
 
 
     for score in scores:
@@ -47,7 +64,7 @@ for i in enumerate([train800,train1000,train1200]):
         print()
 
         #clf = GridSearchCV(SVC(C=1), tuned_parameters, cv=5, scoring=score)
-        clf = GridSearchCV(RandomForestClassifier(max_features=max_features, n_jobs=-1), tuned_parameters, cv=5, scoring=score)
+        clf = GridSearchCV(RandomForestClassifier(max_features=max_features, n_jobs=-1), tuned_parameters, cv=10)
         clf.fit(X_train, y_train)
 
         print("Best parameters set found on development set:")
