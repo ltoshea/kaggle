@@ -87,6 +87,6 @@ for i in range(0,3):
         print(classification_report(y_true, y_pred))
         print()
         block_elapsed = (time.clock() - start)
-        print ("time elapsed: " %block_elapsed)
-    elapsed = (time.clock() - start)
+        print ("time elapsed: ",str(block_elapsed))
+    elapsed = time.clock() - start
     print ("time elapsed: ",elapsed)

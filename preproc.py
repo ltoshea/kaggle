@@ -4,7 +4,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn import decomposition
 from scipy import ndimage
 
-def pca(train,test=None,components=80):
+def pca(train,test=None,components=800):
 	print "Running PCA with %d components..." %components
 	decomp = decomposition.PCA(n_components=components).fit(train)
 	if (test == None):

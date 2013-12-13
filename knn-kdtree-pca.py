@@ -3,20 +3,13 @@ import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
 from preproc import pca,medianfilter
 
-def knn(train,test,labels,neighbours=10, runPCA=True, components=80):
-	median = True
+def knn(train,test,labels,neighbours=10, runAll=None, median=True, runPCA=True, components=80):
 	print "Putting training data into matrix"
 	trainM = np.mat(train)
 	print "Running K nearest Neighbour, default = 10"
 	knn = KNeighborsClassifier(n_neighbors=neighbours, algorithm="kd_tree")
 
-	if (runPCA==True):
-			trainReduce, testReduce = pca(train,test,components)
-			knn.fit(trainReduce,labels)	#print at beginning of this
-			result = knn.predict(testReduce)
-			print "Writing output to file output.knn-kdtree-pca.csv\n"
-			fwrite(result,fname='output.knn-kdtree-pca.csv')
-	
+
 	if(median == True):
 		print "Running data through Median filter..."
 		trainfilter = medianfilter(train)
@@ -25,6 +18,15 @@ def knn(train,test,labels,neighbours=10, runPCA=True, components=80):
 		print "Writing to output file output.knn-kdtree-median.csv\n"
 		fwrite(result,fname='output.knn-kdtree-median.csv')
 		return(0)
+
+	if (runPCA==True):
+			trainReduce, testReduce = pca(train,test,components)
+			knn.fit(trainReduce,labels)	#print at beginning of this
+			result = knn.predict(testReduce)
+			print "Writing output to file output.knn-kdtree-pca.csv\n"
+			fwrite(result,fname='output.knn-kdtree-pca.csv')
+	
+
 
 	
 	print "Running without PCA\n"

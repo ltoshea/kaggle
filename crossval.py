@@ -4,20 +4,18 @@ from sklearn import cross_validation, svm
 from fileio import fread, fwrite
 from preproc import medianfilter
 from numpy import genfromtxt
+from fileio import fread,fwrite
 import numpy as np
 import time
 
 
 def main():
     #read in  data, parse into training and target sets
-    data = genfromtxt(open('data/train.csv', 'r'), delimiter=',', dtype='int64')[1:]
+    train,labels = fread(f='data/train.csv', train=True)
+    test,tmplbl = fread(f='data/test.csv')
 
-    target = np.array( [x[0] for x in data] )
-    train = np.array( [x[1:] for x in data] )
-    #train = medianfilter(train)
-   # print len(target)
-
-    #In this case we'll use a random forest, but this could be any classifier
+    train = medianfilter(train)
+    train = pca(train)
     #cfr = RandomForestClassifier(n_estimators=100)
     start = time.clock()
     #cfr = svm.SVC(kernel='poly',C=1.0, degree=1)

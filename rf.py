@@ -6,7 +6,7 @@ from sklearn.cross_validation import cross_val_score
 from numpy import genfromtxt, savetxt
 from preproc import pca
 
-def randforest(train,test,labels, estimators=800, runPCA=True, components=800):
+def randforest(train,test,labels, estimators=800, runMedian=True, runPCA=True, components=800):
 	train = np.mat(train)
 	test = np.mat(test)
 	print "Random Forest Classifier\n"
