@@ -7,7 +7,7 @@ from scipy import ndimage
 def pca(train,test=None,components=80):
 	print "Running PCA with %d components..." %components
 	decomp = decomposition.PCA(n_components=components).fit(train)
-	if test = None:
+	if (test == None):
 		trainReduce = decomp.transform(train)
 		return train
 	else:
