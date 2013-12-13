@@ -32,6 +32,7 @@ def main():
     #run the classifier on each one, aggregating the results into a list
     results = []
     i = 0
+    count =0
     for traincv, testcv in cv:
         ClassPred = cfr.fit(train[traincv], target[traincv]).predict(train[testcv]) 
         for j in range(0,(len(train)/10)):
@@ -43,6 +44,10 @@ def main():
         accuracy = (i/2000.0)*100
         i=0 
         results.append(accuracy)
+        count = count + 1
+        elapsedfold = (time.clock() - start)
+        print "accuracy for fold", count, " : ", accuracy,"%"
+        print "time after fold", count, " : ", elspasedfold,"%"
         #print "probas length: ", len(probas)
         #print "probas: ", probas
        # cfr.cross_validation.cross_val_score(cfr, train[traincv], y=None, scoring=None, cv=None, n_jobs=1, verbose=0, fit_params=None, score_func=None, pre_dispatch='2*n_jobs')
