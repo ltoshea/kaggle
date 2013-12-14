@@ -47,16 +47,16 @@ for i in range(0,3):
     continue"""
     if (i==0):
         train = train20
-        print ("\n Running with PCA:800 \n")
+        print ("\n Running with PCA:20 \n")
     if (i==1):
         train = train30
-        print ("Running with PCA:1000 \n")
+        print ("Running with PCA:30 \n")
     if (i==2):
         train = train60
-        print ("Running with PCA:1200 \n")
+        print ("Running with PCA:60 \n")
 
 
-    X_train, X_test, y_train, y_test = train_test_split( train, labels, test_size=0.1, random_state=0)
+    X_train, X_test, y_train, y_test = train_test_split( train, labels, test_size=0.9, random_state=0)
 
 
     for score in scores:
