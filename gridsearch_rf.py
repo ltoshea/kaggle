@@ -22,13 +22,13 @@ start = time.clock()
 
 train,labels = fread(f='data/train.csv', train=True)
 train = medianfilter(train)
-train800 = pca(train,components=800)
-train1000 = pca(train,components=1000)
-train1200 = pca(train,components=1200)
+train20 = pca(train,components=20)
+train30 = pca(train,components=30)
+train60 = pca(train,components=60)
 
 
 #tuned_parameters = [{'kernel': ['rbf'], 'gamma': [1e-3, 1e-4], 'C': [1, 10, 100, 1000]}, {'kernel': ['linear'], 'C': [1, 10, 100, 1000]}]
-tuned_parameters = [{'n_estimators': [10,15,20]}]
+tuned_parameters = [{'n_estimators': [10,15,20,30,50,100]}]
 max_features = sqrt(784)
 scores = ['precision', 'recall']
 #n_samples = len(X)/4
@@ -46,13 +46,13 @@ for i in range(0,3):
     print ("end of for")
     continue"""
     if (i==0):
-        train = train800
+        train = train20
         print ("\n Running with PCA:800 \n")
     if (i==1):
-        train = train1000
+        train = train30
         print ("Running with PCA:1000 \n")
     if (i==2):
-        train = train1200
+        train = train60
         print ("Running with PCA:1200 \n")
 
 

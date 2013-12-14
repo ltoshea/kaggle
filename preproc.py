@@ -1,5 +1,6 @@
-#!/usr/bin/python
-import numpy as np 
+ #!/usr/bin/python
+import numpy as np
+import math 
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn import decomposition
 from scipy import ndimage
@@ -31,7 +32,7 @@ def medianfilter(train):
 		imageM = tempImgArray.reshape(28,28)
 		#print "ImageM type is: ",type(imageM)
 		#print "ImageM: ",imageM
-		med_denoised = ndimage.median_filter(imageM, size(2,2))
+		med_denoised = ndimage.median_filter(imageM, size=(2,2))
 		#print "denoised type before: ",type(med_denoised), len(med_denoised)
 		med_denoised_flat = med_denoised.reshape(1,784)
 	#	print "denoised type after: ",type(med_denoised_flat), len(med_denoised_flat)
